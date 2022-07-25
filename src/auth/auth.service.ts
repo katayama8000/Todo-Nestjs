@@ -10,8 +10,9 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
   ) {}
-  async validateUser({ username, password }: CreateUserDto) {
+  async validateUser({ username, password }: CreateUserDto): Promise<true> {
     const user = await this.usersService.findOne(username);
+    //usersServiceで取得したpasswordをbcrypt.compareで比較
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
       throw new UnauthorizedException('Invalid credentials');

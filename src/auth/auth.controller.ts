@@ -6,7 +6,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post('login')
-  create(@Body(ValidationPipe) createUser: CreateUserDto) {
+  login(@Body(ValidationPipe) createUser: CreateUserDto) {
     console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', createUser);
     return this.authService.login(createUser);
   }

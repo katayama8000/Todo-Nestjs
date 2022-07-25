@@ -10,6 +10,7 @@ export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
   users: CreateUserDto[] = [];
   async create(user: CreateUserDto) {
+    //passwordをhash化
     const createdUser = new this.userModel({
       username: user.username,
       password: await bcrypt.hash(user.password, 12),

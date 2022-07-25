@@ -20,6 +20,8 @@ export class UsersController {
   }
 
   @Get(':username')
+  //jwtの認証を行う
+  //headerにAuthorization: Bearer <token>がないととれないよ
   @UseGuards(AuthGuard('jwt'))
   findOne(@Param('username') username: string) {
     return this.usersService.findOne(username);
