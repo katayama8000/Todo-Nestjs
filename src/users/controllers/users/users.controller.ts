@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
-import { UsersService } from 'src/users/services/users/users.service';
+import { UsersModel } from 'src/users/types/users.interface';
 
 @Controller('users')
 export class UsersController {
@@ -7,6 +7,11 @@ export class UsersController {
   @Get('')
   getUsers() {
     return 'getUsers';
+  }
+  @Get('all')
+  async getAllUsersName(): Promise<string[]> {
+    const users: UsersModel[] = await this.usersService.getAllUsers();
+    return users.map((user) => user.username);
   }
 
   @Post('create')

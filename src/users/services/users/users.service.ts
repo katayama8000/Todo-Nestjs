@@ -9,7 +9,22 @@ export class UsersService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}
-  createUsers(user: UserEntity) {
-    return this.userRepository.save(user);
+
+  getAllUsers(): Promise<UserEntity[]> {
+    return this.userRepository.find();
+  }
+  createUsers(user: UserEntity): string | void {
+    //return this.userRepository.save(user);
+    //同じユーザー名が存在するかチェック
+    this.userRepository
+      .findOneBy({ username: user.username })
+      .then((result) => {
+        if (result) {
+          console.log('同じユーザー名が存在します');
+          return '同じユーザー名は登録できません';
+        } else {
+          this.userRepository.save(user);
+        }
+      });
   }
 }

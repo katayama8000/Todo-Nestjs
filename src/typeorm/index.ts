@@ -1,4 +1,6 @@
 import { User } from './User';
-const entities = [User];
-export { User };
+import { Todo } from './Todo';
+export { User, Todo };
+
+const entities = [User, Todo];
 export default entities;
