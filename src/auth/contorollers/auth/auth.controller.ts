@@ -5,10 +5,12 @@ import {
   Post,
   ValidationPipe,
   UsePipes,
+  Session,
 } from '@nestjs/common';
 import { AuthService } from 'src/auth/services/auth/auth.service';
 import { UsersService } from 'src/users/services/users/users.service';
 import { LoginUserDto } from 'src/auth/dto/loginUser.dto';
+import { User } from 'src/typeorm';
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -20,15 +22,45 @@ export class AuthController {
   test() {
     return 'test';
   }
-  @Get('getAllUsers')
+  @Get('all')
   async getAllUsers() {
     return await this.authService.getUsers();
   }
 
-  @Post('login')
+  @Post('signin')
   @UsePipes(ValidationPipe)
-  async login(@Body() LoginUserDto: LoginUserDto) {
+  async signin(
+    @Body() LoginUserDto: LoginUserDto,
+    @Session() session: Record<string, any>,
+  ): Promise<User | { errorMessage: string }> {
     const { username, password } = LoginUserDto;
-    return await this.authService.validateUser(username, password);
+    const user = await this.authService.validateUser(username, password);
+    if ('errorMessage' in user) return user;
+    session.userId = user.id;
+    return user;
+  }
+
+  @Post('signup')
+  @UsePipes(ValidationPipe)
+  async signup(
+    @Body() LoginUserDto: LoginUserDto,
+    @Session() session: Record<string, any>,
+  ): Promise<{ errorMessage: string } | { message: string }> {
+    const user = await this.userService.createUsers(LoginUserDto);
+    if ('errorMessage' in user) return user;
+    session.userId = user.id;
+    return { message: 'ユーザーを作成しました' };
+  }
+
+  @Get('signout')
+  signout(@Session() session) {
+    session.userId = null;
+    return { message: 'ログアウトしました' };
+  }
+
+  @Get('session')
+  getSession(@Session() session: Record<string, any>) {
+    console.log(session.userId);
+    return session;
   }
 }

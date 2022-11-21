@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { User } from 'src/typeorm';
 import { UsersService } from 'src/users/services/users/users.service';
 import { UsersModel } from 'src/users/types/users.interface';
 
@@ -12,7 +13,7 @@ export class AuthService {
   async validateUser(
     username: string,
     password: string,
-  ): Promise<UsersModel | { errorMessage: string }> {
+  ): Promise<User | { errorMessage: string }> {
     const user = await this.usersService.getUsersByUserName(username);
     if (user) {
       if (user.password === password) {

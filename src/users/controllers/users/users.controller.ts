@@ -20,7 +20,7 @@ export class UsersController {
   }
   @Get('all')
   async getAllUsersName(): Promise<string[]> {
-    const users: UsersModel[] = await this.usersService.getAllUsers();
+    const users = await this.usersService.getAllUsers();
     return users.map((user) => user.username);
   }
 
