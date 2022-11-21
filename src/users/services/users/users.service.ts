@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User as UserEntity } from '../../../typeorm';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateUserDto } from 'src/users/dto/createUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -13,18 +14,13 @@ export class UsersService {
   getAllUsers(): Promise<UserEntity[]> {
     return this.userRepository.find();
   }
-  createUsers(user: UserEntity): string | void {
-    //return this.userRepository.save(user);
-    //同じユーザー名が存在するかチェック
-    this.userRepository
-      .findOneBy({ username: user.username })
-      .then((result) => {
-        if (result) {
-          console.log('同じユーザー名が存在します');
-          return '同じユーザー名は登録できません';
-        } else {
-          this.userRepository.save(user);
-        }
-      });
+
+  async createUsers(createUserDto: CreateUserDto): Promise<{
+    errorMessage: string;
+  } | void> {
+    const result = await this.userRepository.findOneBy({
+      username: createUserDto.username,
+    });
+    if (result) return { errorMessage: `${result.username}は既に存在します` };
   }
 }
