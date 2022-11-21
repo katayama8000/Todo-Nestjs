@@ -13,7 +13,7 @@ import { UsersService } from 'src/users/services/users/users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(@Inject('USERS_SERVICE') private usersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
   @Get('')
   getUsers() {
     return 'getUsers';

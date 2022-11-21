@@ -8,7 +8,7 @@ import { CreateUserDto } from 'src/users/dto/createUser.dto';
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private userRepository: Repository<UserEntity>,
   ) {}
 
   getAllUsers(): Promise<UserEntity[]> {
