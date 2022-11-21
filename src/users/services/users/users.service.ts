@@ -15,6 +15,10 @@ export class UsersService {
     return this.userRepository.find();
   }
 
+  async getUsersByUserName(username: string): Promise<UserEntity> {
+    return await this.userRepository.findOneBy({ username });
+  }
+
   async createUsers(createUserDto: CreateUserDto): Promise<{
     errorMessage: string;
   } | void> {
