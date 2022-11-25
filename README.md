@@ -16,5 +16,9 @@ show tables;
 describe users;
 ```
 
-https://dev.classmethod.jp/articles/typeorm-er-diagram/
+---
 
+
+- [typeorm-github](https://github.com/typeorm/typeorm)  
+- [typeorm-docs](https://typeorm.io/repository-api)
+- [typeorm-ER図](https://dev.classmethod.jp/articles/typeorm-er-diagram/)
