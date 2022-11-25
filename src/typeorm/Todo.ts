@@ -2,7 +2,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -19,20 +18,19 @@ export class Todo {
   })
   title: string;
 
-  @Column({
-    nullable: false,
-    default: '',
-  })
-  description: string;
-
-  @Column({
-    nullable: false,
-    default: false,
-  })
+  @Column('bool')
   completed: boolean;
 
   // userとの関連付け
-  @ManyToOne(() => User, (user) => user.todos)
+  // cascadeを設定
+  @ManyToOne(() => User, (user) => user.todos, { cascade: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
+  //   () => User,
+  //   (user) => user.todos,
+  //   { nullable: true },
+  //   { cascade: true },
+  // )
+  // @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  // user: User;
 }

@@ -26,6 +26,7 @@ export class User {
   password: string;
 
   // todoとの関連付け
+  // cascadeを設定
   @OneToMany(() => Todo, (todo) => todo.user)
   todos: Todo[];
 }

@@ -20,6 +20,7 @@ import { TodoModule } from './todo/todo.module';
       database: 'todo_db',
       entities: entities,
       synchronize: true,
+      logging: true, // SQLログ
     }),
     TodoModule,
   ],
