@@ -18,6 +18,7 @@ describe users;
 
 ---
 
+- [nest.js-typeorm動画](https://www.youtube.com/watch?v=rKgZLVgdvAY)
 
 - [typeorm-github](https://github.com/typeorm/typeorm)  
 - [typeorm-docs](https://typeorm.io/repository-api)
