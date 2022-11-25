@@ -71,4 +71,10 @@ export class ApiController {
     });
     console.log(employee);
   }
+
+  @Get('test4')
+  async deleteEmployee() {
+    console.log('test4');
+    return this.employeeRepository.delete(6);
+  }
 }
