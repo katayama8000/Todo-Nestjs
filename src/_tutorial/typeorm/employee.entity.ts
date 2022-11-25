@@ -35,7 +35,7 @@ export class Employee {
   @OneToMany(() => Task, (task) => task.employee)
   tasks: Task[];
 
-  @ManyToMany(() => Meeting, (meeting) => meeting.atenndees)
+  @ManyToMany(() => Meeting, (meeting) => meeting.attendees)
   @JoinTable()
   meetings: Meeting[];
 }

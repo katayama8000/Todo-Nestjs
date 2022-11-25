@@ -49,7 +49,7 @@ export class ApiController {
     const meeting1 = this.meetingRepository.create({
       zoomurl: 'https://zoom.us/j/1234567890',
     });
-    meeting1.atenndees = [ceo];
+    meeting1.attendees = [ceo];
     await this.meetingRepository.save(meeting1);
 
     await this.employeeRepository.save(manager);

@@ -10,5 +10,5 @@ export class Meeting {
   zoomurl: string;
 
   @ManyToMany(() => Employee, (employee) => employee.meetings)
-  atenndees: Employee[];
+  attendees: Employee[];
 }
