@@ -16,3 +16,5 @@ show tables;
 describe users;
 ```
 
+https://dev.classmethod.jp/articles/typeorm-er-diagram/
+
