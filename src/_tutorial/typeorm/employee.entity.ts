@@ -3,6 +3,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -20,7 +21,7 @@ export class Employee {
   @Column()
   name: string;
 
-  @ManyToMany(() => Employee, (employee) => employee.directReports, {
+  @ManyToOne(() => Employee, (employee) => employee.directReports, {
     onDelete: 'SET NULL',
   })
   manager: Employee;

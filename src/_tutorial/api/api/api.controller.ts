@@ -59,16 +59,16 @@ export class ApiController {
   async getEmployeeById() {
     console.log('test3');
     // const id = 5;
-    // const employee = await this.employeeRepository.findOne({
-    //   where: { name: 'Marius' },
-    //   relations: [
-    //     'manager',
-    //     'directReports',
-    //     'tasks',
-    //     'contactInfo',
-    //     'meetings',
-    //   ],
-    // });
-    //console.log(employee);
+    const employee = await this.employeeRepository.findOne({
+      where: { id: 6 },
+      relations: {
+        manager: true,
+        directReports: true,
+        tasks: true,
+        contactInfo: true,
+        meetings: true,
+      },
+    });
+    console.log(employee);
   }
 }
