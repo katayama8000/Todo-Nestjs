@@ -22,4 +22,7 @@ describe users;
 
 - [typeorm-github](https://github.com/typeorm/typeorm)  
 - [typeorm-docs](https://typeorm.io/repository-api)
-- [typeorm-ER図](https://dev.classmethod.jp/articles/typeorm-er-diagram/)
+- [typeorm-ER図](https://github.com/eugene-manuilov/typeorm-uml/#synopsis)
+
+
+![er](https://user-images.githubusercontent.com/63860688/204012013-f6ed4248-8d09-46eb-b896-7bdf64507cea.png)
