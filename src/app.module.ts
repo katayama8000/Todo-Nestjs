@@ -6,11 +6,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TodoModule } from './todo/todo.module';
+import { ContactInfo } from './_tutorial/typeorm/contact-info.entity';
+import { Employee } from './_tutorial/typeorm/employee.entity';
+import { Meeting } from './_tutorial/typeorm/meeting.entiry';
+import { Task } from './_tutorial/typeorm/task.entity';
+import { ApiModule } from './_tutorial/api/api/api.module';
 
 @Module({
   imports: [
     UsersModule,
     AuthModule,
+    TodoModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -22,7 +28,8 @@ import { TodoModule } from './todo/todo.module';
       synchronize: true,
       logging: true, // SQLログ
     }),
-    TodoModule,
+    ApiModule,
+    //TypeOrmModule.forFeature([ContactInfo, Employee, Meeting, Task]),
   ],
   controllers: [AppController],
   providers: [AppService],
