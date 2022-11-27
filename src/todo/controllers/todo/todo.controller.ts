@@ -56,4 +56,14 @@ export class TodoController {
     user.todos = [todo];
     await this.userRepository.save(user);
   }
+
+  @Get('getuser')
+  async getUser() {
+    const user = await this.userRepository.findOne({
+      where: { id: 7 },
+      relations: ['todos'],
+    });
+    console.log(user);
+    return user;
+  }
 }
