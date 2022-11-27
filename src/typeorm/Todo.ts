@@ -23,8 +23,7 @@ export class Todo {
 
   // userとの関連付け
   // cascadeを設定
-  @ManyToOne(() => User, (user) => user.todos, { cascade: true })
-  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => User, (user) => user.todos, { onDelete: 'CASCADE' })
   user: User;
   //   () => User,
   //   (user) => user.todos,
